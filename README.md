@@ -1,10 +1,10 @@
 # crud-manytomany
 
-composer install
+## composer install
 
---data base
+## --data base
 symfony console doctrine:database:create
---migrations
+## --migrations
 symfony console make:migration
 symfony console doctrine:migration:migrate
 symfony console d:s:u --force
