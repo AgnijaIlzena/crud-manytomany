@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Client;
-use App\Entity\Project;
+use App\Entity\Service;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,10 +16,10 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('type', TextType::class)
-            ->add('projects', EntityType::class, [
-                'class'=> Project::class,
-                'choice_label' => 'title',
-                'label' => 'Nom de projet',
+            ->add('services', EntityType::class, [
+                'class'=> Service::class,
+                'choice_label' => 'name',
+                'label' => 'Nom de service',
                 'multiple' => true
             ])
         ;

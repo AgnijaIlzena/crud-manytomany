@@ -18,12 +18,12 @@ class Client
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'relation')]
-    private Collection $projects;
+    #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'client')]
+    private Collection $services;
 
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,27 +44,27 @@ class Client
     }
 
     /**
-     * @return Collection|Project[]>
+     * @return Collection<int, Service>
      */
-    public function getProjects(): Collection
+    public function getServices(): Collection
     {
-        return $this->projects;
+        return $this->services;
     }
 
-    public function addProject(Project $project): self
+    public function addService(Service $service): self
     {
-        if (!$this->projects->contains($project)) {
-            $this->projects[] = $project;
-            $project->addRelation($this);
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->addClient($this);
         }
 
         return $this;
     }
 
-    public function removeProject(Project $project): self
+    public function removeService(Service $service): self
     {
-        if ($this->projects->removeElement($project)) {
-            $project->removeRelation($this);
+        if ($this->services->removeElement($service)) {
+            $service->removeClient($this);
         }
 
         return $this;

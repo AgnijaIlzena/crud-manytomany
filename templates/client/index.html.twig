@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Type</th>
                 <th>actions</th>
+                <th>client services1</th>
+                <th>client services2</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +20,10 @@
             <tr>
                 <td>{{ client.id }}</td>
                 <td>{{ client.type }}</td>
+                 {# <td>{{ client.services.name }}</td> #}
+                {% for service in client.services %}
+                 <td>{{ service.name }}</td>
+                 {% endfor %}
                 <td>
                     <a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
                     <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
